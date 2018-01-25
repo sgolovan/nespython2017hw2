@@ -6,7 +6,8 @@ Created on Tue Jan 23 23:51:12 2018
 @author: silis123
 """
 
-#%% Задание 1
+#%% 
+#Задание 1
 def sumThreeFive(n):
     ThreeFives = (3, 5, 15) # определяем набор чисел, которые нам интересны для деления. 15 нужно для того, чтобы это вычесть и не считать 2 раза
     IntDiv = [(n-1) // TF for TF in ThreeFives] #смотрим целочисленное деление
@@ -16,7 +17,8 @@ def sumThreeFive(n):
     return b
 
 print(sumThreeFive(10000)) #23331668
-#%% Задание 2
+#%% 
+#Задание 2
 def dibo(n): #здесь определяем функцию для подсчёта фибоначчи
       if n in hs: #здесь начинаются итерации
           return hs[n]
@@ -28,7 +30,8 @@ def fibo(n):
     print (dibo(n))
     
 fibo(200) #453973694165307953197296969697410619233826
-#%% Задание 3
+#%% 
+#Задание 3
 import pandas
 def splitbylettersnumber(file): #функция для разделения списка слов на группы по количеству букв
     name = file
@@ -69,7 +72,8 @@ def anagrams(n): #команда для задания
         print (comparison(i)) # вывод списка
         
 anagrams("words-list-russian.txt") #7 классов
-#%% Задание 4
+#%% 
+#Задание 4
 import pandas #импортирую пандас и каунтер, потому что это позволит проще сделать задание
 from collections import Counter
 def typesetter(wordlist, word): #определяем команду для выполнения задания
@@ -87,7 +91,8 @@ def typesetter(wordlist, word): #определяем команду для вы
                 count+=1 #прибавляем счетчик
                 print(count, i) #выводим номер слова и само слово из списка, которое является анаграммой
 typesetter("words-list-russian.txt", 'лекарство')
-#%% Задание 5
+#%% 
+#Задание 5
 import pandas
 import random
 from collections import Counter
@@ -132,7 +137,8 @@ while playing: #начало цикла игры
         print('Ошибка: я не знаю такого слова')
     else: 
         print('Вы угадали %s букв из 5!' %sum(iter(lettermatch.values()))) #если все ограничения не срабатывают, то пишем количество совпавших букв и оправляем в начало
-#%% Задание 6
+#%% 
+#Задание 6
 import pandas
 
 def output5(file): #вытаскиваем пятибуквенные слова для дальнейшей работы. Более подробное описание было выше
@@ -180,7 +186,8 @@ while playing:
         elif sum(iter(lettermatch.values())) <= 5 and i!=user_input: #условие, которое выводит количество совпавших букв в неверном слове из списка
             print (i) #вывод неверного слова
             print('Введите число совпадающих букв: %s ' %sum(iter(lettermatch.values()))) #автоматизация вывода числа совпавших букв
-#%% Задание 7
+#%% 
+#Задание 7
 import urllib.request
 from bs4 import BeautifulSoup
 url = 'http://www.belstat.gov.by/ofitsialnaya-statistika/makroekonomika-i-okruzhayushchaya-sreda/natsionalnye-scheta/godovye-dannye_11/proizvodstvo-valovogo-vnutrennego-produkta/' #ввод рабочего адреса
