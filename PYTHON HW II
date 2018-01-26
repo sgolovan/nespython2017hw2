@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 21 17:20:16 2018
+
+@author: Anastasiia
+"""
+
+#%% TASK I
+
+def summa(n):
+    i = 1
+    s = 0
+    while i < n:
+        s = i + s
+        i = i + 1
+        m = [i for i in range(1,n) if i%3 == 0 or i%5 == 0]
+        t = sum(m)
+    return(s + t)
+
+#%% TASK II
+
+def f(n):
+    a, b = 0, 1
+    for i in range(0, n):
+        a, b = b, a + b
+    return a
+
+#%% TASK III
+
+from itertools import groupby
+def anagrams(dictionary):
+    return [list(group) for key, group in groupby(sorted(dictionary,key=sorted), sorted)]
+    
+import pandas as pd
+source = "/Users/anastasiia/Downloads/PYTHON/HW II/words-list-russian.txt"
+dictionary = pd.read_table(source, header = None)[0].tolist()
+
+anagrams(dictionary)
+
+#%% TASK IV
+
+import pandas as pd
+
+box = list(set("лекарство"))
+source = "/Users/anastasiia/Downloads/PYTHON/HW II/words-list-russian.txt"
+dictionary = pd.read_table(source, header = None)[0].tolist()
+
+pool = []
+for a in dictionary:
+    setarr = set(a)
+    if len(a) <= len(box) and len(a) == len(setarr):
+        pool.append(a)
+
+typesetter = [] 
+  
+for i in pool: #word = i
+    for k in box: #letter = k
+        for j in i: #letter = j
+            if all( j in box for j in i ) == True:
+                typesetter.append(i)
+                        
+                
+typesetter = list(set(typesetter))
+typesetter
+
+#%% TASK V
+import pandas as pd
+import random as rdm
+source = "/Users/anastasiia/Downloads/PYTHON/HW II/words-list-russian.txt"
+dictionary = pd.read_table(source, header = None)[0].tolist()
+
+pool = []
+for a in dictionary:
+    setarr = set(a)
+    if len(a) <= len(box) and len(a) == len(setarr):
+        pool.append(a)
+
+def blackbox(word, guess):
+    yacoubovic = 0
+    for i in guess:
+        if word.find(i) >= 0:  
+            yacoubovic += 1
+    return yacoubovic
+
+playing = True
+word = rdm.choice(pool)
+rounds = 0
+
+print("Let`s Get It Started Now")
+
+while playing:
+    guess = input("Guess the word, Old Men. 5 different letters all you need: ")
+    
+    if guess == "Oy, vse":
+        print ("):")
+        break
+    
+    yacoubovic = blackbox(word, guess)
+    rounds += 1
+    print("%s hit out of 5. Keep calm and carry on." %yacoubovic)
+    
+    if guess not in pool:
+        playing = True
+        print("Unfortunately, I don`t speak Chineese. Try again.")
+        
+    if yacoubovic == 5:
+        playing = False
+        print("After %s trials you have finally got it was %" 
+              %(rounds, word))
+
+#%% TASK VI
+import pandas as pd
+import random as rdm
+source = "/Users/anastasiia/Downloads/PYTHON/HW II/words-list-russian.txt"
+dictionary = pd.read_table(source, header = None)[0].tolist()
+
+pool = []
+for a in dictionary:
+    setarr = set(a)
+    if len(a) <= len(box) and len(a) == len(setarr):
+        pool.append(a)
+
+def blackbox(word, guess):
+    yacoubovic = 0
+    for i in guess:
+        if word.find(i) >= 0:  
+            yacoubovic += 1
+    return yacoubovic
+
+playing = True
+word = input("My word is ")
+rounds = 0
+
+print("Already winning")
+
+while playing:
+    guess = rdm.choice(pool)
+    print(guess)
+    yacoubovic = blackbox(word, guess)
+    rounds += 1
+    print("Your Hit Rating is %s out of 5." %yacoubovic)
+    
+    if yacoubovic == 5:
+        print("After %s trials you have finally understood it was %" 
+              %(rounds, word))
+        playing = False
+        
+#%% TASK VII
+
+import pandas as pd
+
+data = pd.read_html('http://www.belstat.gov.by/ofitsialnaya-statistika/makroekonomika-i-okruzhayushchaya-sreda/natsionalnye-scheta/godovye-dannye_11/proizvodstvo-valovogo-vnutrennego-produkta/', header = 0)
+for i in data:
+    print(i)
+    
+    
+ 
