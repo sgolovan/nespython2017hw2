@@ -151,3 +151,30 @@ def guess_the_word_guesser(path):
             print('I guessed after attempt number '+str(word_num+1))
             return
     print('I don\'t know this word!')
+    
+ 
+def parse_table():
+    '''Parses table from default url
+    '''
+    url = 'http://www.belstat.gov.by/ofitsialnaya-statistika/makroekonomika-i-okruzhayushchaya-sreda/natsionalnye-scheta/godovye-dannye_11/proizvodstvo-valovogo-vnutrennego-produkta/'
+    html = urllib.request.urlopen(url).read()
+    soup = BeautifulSoup(html, 'lxml')
+    
+    table = soup.find('table', {'class' : 'autotbl nohead'}).find('tbody')
+    header = table.find('tr')
+    column_names = [column.get_text().strip() for 
+                    column in header.find_all('th')]
+    table_data = []
+    for row in table.find_all('tr')[1:]:
+        table_data.append([])
+        for value in row.find_all('td'):
+            clear_value = value.get_text().strip()
+            clear_value = clear_value.replace(',','.').replace(u'\xa0','').replace('\n\t\t\t\t','')
+            try:
+                clear_value = float(clear_value)
+            except:
+                pass
+            table_data[-1].append(clear_value)
+    final_table = pd.DataFrame(table_data, columns=column_names)
+    final_table.index = final_table.iloc[:,0]
+    print(final_table)
