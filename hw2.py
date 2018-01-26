@@ -35,10 +35,10 @@ def fibo(n):
     number : int
         n-th Fibonacci number
     '''
-    if n < 3:
-        return n
-    else:
-        return fibo(n-1) + fibo(n-2)
+    numbers = np.array([1,2], dtype='uint64')
+    for i in range(2,n):
+        numbers = np.append(numbers, numbers[-1]+numbers[-2])
+    return numbers[n-1]
     
 
 def anagrams(path):
