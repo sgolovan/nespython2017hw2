@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 24 16:16:02 2018
+
+@author: alena
+"""
+#%%
+#1
+def sumFiveThree(n):
+    summ = 0
+    for i in range(1,n):
+        if i % 5 == 0 or i % 3 == 0:
+            summ = summ+i
+    return summ
+
+sumFiveThree(10000)
+
+
+#%%
+#2
+pair = {1: 1, 2: 2}
+
+def fibo(n):
+    if n in pair:
+        return pair[n]
+    pair[n] = fibo(n - 1) + fibo(n - 2)
+    return pair[n]
+
+fibo(200)
+
+#%%
+#4
+cd '/Users/alena/Desktop/ha/nespython2017hw2'
+#%%
+# загрузка файла из текущей директории
+def typesetter(x, y):
+    file = open(x, "r")
+    text = file.read()
+    a = set(y)
+    n = 0     
+    for i in range (len(dictionary)):
+        if a.issuperset(set(dictionary[i])):
+            if len(dictionary[i]) == len(set(dictionary[i])):
+               if len(a) >= len(set(dictionary[i])):
+                   print(dictionary[i])
+                   n = n + 1
+    print("n =",n)
+
+
+
+    
+#%%   (без функции)
+file = open("words-list-russian.txt", "r")
+text = file.read()
+
+a = set('лекарство')
+n = 0     
+for i in range (len(dictionary)):
+    if a.issuperset(set(dictionary[i])):
+        if len(dictionary[i]) == len(set(dictionary[i])):
+           if len(a) >= len(set(dictionary[i])):
+               print(dictionary[i])
+               n = n + 1
+print ("n =",n)
+
+
+
+
+
+#%%
+#5
+cd '/Users/alena/Desktop/ha/nespython2017hw2'
+#%%
+# загрузка файла
+file = open("words-list-russian.txt", "r")
+text = file.read()
+dictionary = text.split()
+
+import random
+
+# формирование списка слов для ведущего
+dict1 = []
+for i in range (len(dictionary)):
+    if len(dictionary[i])==len(set(dictionary[i])) and len(dictionary[i])==5:
+        dict1.append(dictionary[i])
+# выбор рандомного слова из готового списка
+secret_word = dict1[random.randint(0,len(dict1))]
+
+# игра
+guesses = 1
+playing = True 
+
+print('Correct word: %s' % secret_word)
+
+while playing:
+    user_guess = input("Введите слово: ")
+    if user_guess == "exit":
+        break
+    
+    elif user_guess == secret_word:
+        playing = False
+        print("Угадали с попытки номер %s" % guesses)
+    
+    else:
+        if user_guess in dictionary:
+            difference = len(set(secret_word).intersection(set(user_guess)))
+            print(difference)
+            guesses += 1
+        else:
+            print("Не знаю такого слова")
+            guesses += 1
+  
+#%%
+#6
+            
+cd '/Users/alena/Desktop/ha/nespython2017hw2'
+#%%
+# загрузка файла
+file = open("words-list-russian.txt", "r")
+text = file.read()
+dictionary = text.split()
+
+# формирование списка слов для ведущего
+
+import random
+from random import choice
+
+dict1 = []
+for i in range (len(dictionary)):
+    if len(dictionary[i])==len(set(dictionary[i])) and len(dictionary[i])==5:
+        dict1.append(dictionary[i])
+        
+# выбор рандомного слова из готового списка для ведущего
+secret_word = dict1[random.randint(0,len(dict1))]
+
+# алфавит для генерации слова для угадывающего (строчные буквы русского алфавита)
+
+alphabet = ['а','б','в','г','д','е','ё','ж','з','и','й','к',
+            'л','м','н','о','п','р','с','т','у','ф','х','ц',
+            'ч','ш','щ','ъ','ы','ь','э','ю','я']
+
+# игра
+print('Correct word: %s' % secret_word)
+print("Начинаю угадывать!\n", guess)
+playing = True 
+guesses = 1
+while playing:
+    user_guess = ''.join(random.choice(alphabet) for x in range(5))
+    if user_guess == secret_word:
+        playing = False
+        print("Я угадала с попытки номер %s" % guesses)
+    
+    
+    if user_guess in dictionary:
+        difference = len(set(secret_word).intersection(set(user_guess)))
+        print("Введите число совпадающих букв: ", difference)
+        guesses += 1
+   
+    else:
+        print("Я не знаю такого слова")
+        guesses += 1
+        
+
+
+#%% 
+            
+  
+    
